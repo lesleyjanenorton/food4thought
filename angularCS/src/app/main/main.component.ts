@@ -18,13 +18,16 @@ import { FeatureCollection } from 'geojson';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-    isOpen : Boolean;
+    isOpen : Boolean = false;
+    openClass: String = '';
+    bumpClass: String = '';
     userLoc : UserLocation = new UserLocation();
     mapToken : String;
     mealSites: any;
     map:mapboxgl.Map;
     mapService: MapService;
     userGPS: [number, number]= [0, 0];
+    buttonMessage: String; 
     // geocoder: MapboxGeocoder;
   
     constructor(private _mapService: MapService) {
@@ -165,8 +168,8 @@ export class MainComponent implements OnInit {
     })
   
   
-  var sidebarList = document.getElementById('expandCollapse');
-  sidebarList.innerHTML = 'all meal sites +'
+ 
+  this.buttonMessage = 'all meal sites';
   
   
     // end ngOnInit
@@ -178,8 +181,36 @@ export class MainComponent implements OnInit {
   openSesame(){
     console.log('maybe this will work');
     var listingButton = document.getElementById('expandCollapse');
-    listingButton.innerHTML = 'meal sites';
+    if (this.isOpen === false){
+      this.openClass = 'openUp';
+      this.buttonMessage = 'meal sites ';
+      this.isOpen = true;
+      return;
+    } 
+    if(this.isOpen === true){
+      this.openClass = '';
+      this.buttonMessage = 'all meal sites';
+      this.isOpen = false;
+    }
+    
   }
+
+  openSesameHover(){
+    if(this.isOpen === true){
+      return;
+    }
+    if(this.bumpClass === ''){
+    this.bumpClass = 'bumpBump'; 
+    return;
+    } 
+    if(this.bumpClass === 'bumpBump'){
+      this.bumpClass = '';
+    }
+
+  }
+
+
+
   // This is where your interactions with the symbol layer used to be
    // Now you have interactions with DOM markers instead
   
@@ -224,7 +255,7 @@ export class MainComponent implements OnInit {
   
         .setHTML('<h3>'+currentFeature.properties.Name+'</h3>'+
         '<div class="placeInfo"><h5>' + currentFeature.properties.Address +
-          "</h5><p>Serving: "+mealsServed+"</p>"+
+          "</h5><p class='serving'><span class='servingbold'>Serving:</span> "+mealsServed+"</p>"+
           "<a class='directionslink' href='https://www.google.com/maps/dir/?api=1&origin="+String(this.userGPS[0])+"+"
           +String(this.userGPS[1])+"&destination="+currentFeature.properties.Address+"&travelmode=driving' target='_blank'>"+
             'Get Directions'+'</a></div>')

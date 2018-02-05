@@ -52,6 +52,7 @@ span.mapblurb {
   color: #fff !important;
   height: 100vh;
   overflow: scroll;
+  -webkit-overflow-scrolling: touch;
   background: radial-gradient(#2851e7,#1f48dc,#1a45e4);
   text-align:center;
 }

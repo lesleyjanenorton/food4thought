@@ -24,11 +24,11 @@ body {
 .marker:hover, a, a:hover, ul li a, ul li a:hover, 
 .mapboxgl-popup-content , .mapboxgl-popup-content:hover, 
 div.item, div.item:hover, 
-#orangeMarker .cls-1, #orangeMarker .cls-2, div.item:hover .cls-1, 
+div.item:hover .cls-1, 
 div.item:hover .cls-2,
 #mobileNav li, #mobileNav li:hover,
 #mobileNav a, #mobileNav a:hover,
-input, input:hover {
+input, input:hover, #listings, #listings.bumpBump {
     transition: all 0.2s ease !important;
     -webkit-transition: all 0.2s ease!important;
     -moz-transition: all 0.2s ease !important;
@@ -140,17 +140,39 @@ ul#navigationBar {
 }
 
 #listings {
-    height:70vh;
-    display:none;
+    height:0;
+    /* display:none; */
     margin-top:10px;
+    opacity: 0;
     background-color: #2851e7;
     color: #fff;
     overflow-y: scroll;
     overflow-x: hidden;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
-    background: radial-gradient(#2851e7,#1f48dc,#1a45e4);
+    background-image: -webkit-linear-gradient(top, #1f48dc,#1a45e4); 
+background-image:    -moz-linear-gradient(top, #1f48dc,#1a45e4); 
+background-image:     -ms-linear-gradient(top, #1f48dc,#1a45e4); 
+background-image:      -o-linear-gradient(top,#1f48dc,#1a45e4); 
+background-image:         linear-gradient(top, #1f48dc,#1a45e4);
+
    
+  }
+
+  #listings.listings.openUp {
+    display: block;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+    height:70vh;
+    opacity: 1;
+    padding-top: 0px;
+    margin-top: 9.75528px;
+    transition: all 0.3s ease;
+
+  }
+
+  #listings.listings.bumpBump {
+     animation: bumper .5s ease 1;
   }
 
   div#featherOut {
@@ -209,15 +231,20 @@ ul#navigationBar {
   }
 
 
-.mapboxgl-popup-close-button {
-    top: 3vh;
-    right: 3vh;
-    font-size:3vh;
+  .mapboxgl-popup-close-button {
+    top: 10px;
+    right: 20px;
+    font-size: 3vh;
     color: rgba(255,255,255,1);
+    height: 60px;
+    width: 50px;
+    line-height: 60px;
+    font-size: 2rem;
 }
 
 .mapboxgl-popup-close-button:hover {
     color: rgba(255, 86, 34, 0.884);
+    background: rgba(0,0,0,0) !important;
 }
 
 .mapboxgl-popup-content {
@@ -237,13 +264,15 @@ ul#navigationBar {
     background-color: #2851e7;
     border-top-right-radius:8px;
     border-top-left-radius:8px;
-    padding:2vh 2vh 1.75vh 2vh;
-    font-size: 1.35vh;
-    font-weight:700;
+    padding: 0 50px 0 2vh !important;
+    font-size: 1rem;
+    font-weight:600;
     letter-spacing: 1px;
     margin: 0 0 0 0;
     border-bottom: 1px solid rgba(255, 86, 34, 1);
     text-align: left;
+    height: 60px;
+    line-height: 60px;
     
   }
 
@@ -254,11 +283,21 @@ ul#navigationBar {
     display: block;
     margin-bottom:.5vh;
     color: rgba(255,255,255,.96);
-    font-weight: 700;
-    font-size:1.25vh;
+    font-weight: 600;
+    font-size:.9rem;
     text-transform: uppercase;
 }
 
+
+p.serving {
+    font-size: .9rem !important;
+
+}
+
+.servingbold {
+    font-weight: 600;
+    text-transform:uppercase;
+}
 .mapboxgl-popup-content {
     box-shadow: none !important;
 }
@@ -271,16 +310,16 @@ ul#navigationBar {
     border-bottom-right-radius:8px;
     color: rgba(255,255,255,.86);
     padding: 2vh 2vh 2.25vh 2vh;
-    font-size: 1.15vh;
+    font-size: .85rem;
     letter-spacing: 1px;
     font-weight: 400;
 
   }
 
   .placeInfo h5 {
-      font-size: 1.15vh;
+      font-size: .85rem;
     letter-spacing: 1px;
-    font-weight: 400;
+    font-weight: 500;
 
   }
 
@@ -327,10 +366,7 @@ ul#navigationBar {
 }
 
 
-#map {
-    background-color: #2652d7;
-    background: linear-gradient(#1e4ef8, #2652d7);
-}
+
 
 
 .collections {
@@ -382,6 +418,21 @@ ul#navigationBar {
     transition:all 0.2s ease;
 }
 
+
+#expandCollapse img {
+   width: 2vh;
+   margin-left: 1vh;
+   position: absolute;
+   height: 40px;
+   transition: all .41s ease;
+   
+
+}
+
+img.rotator {
+    transform: rotate(180deg);
+    transition: all .41s ease;
+}
 
 input[type="text"] {
     width: 67vw;
@@ -473,6 +524,8 @@ div.item {
     margin: 2vh;
     background: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,0))
 }
+
+
 
 div.item:hover {
     background: linear-gradient(rgba(255,255,255,.01), rgba(255,255,255,.09))
@@ -638,6 +691,8 @@ div.item:hover {
 
         #expandCollapse {
             width: 37vw;
+            text-align:left;
+            padding-left:2vw;
         }
         #listings {
             width: 96vw !important; 
@@ -653,6 +708,12 @@ div.item:hover {
       
     }
 
+
+@-ms-keyframes bumper{0%{opacity: 0; height:0} 50%{opacity: 1; height:3vh} 90%{opacity:1} 100%{opacity: 0; height: 0}}
+@-moz-keyframes bumper{0%{opacity: 0; height:0} 50%{opacity: 1; height:3vh} 90%{opacity:1} 100%{opacity: 0; height: 0}}
+@-webkit-keyframes bumper{0%{opacity: 0; height:0} 50%{opacity: 1; height:3vh} 90%{opacity:1} 100%{opacity: 0; height: 0}}
+@keyframes bumper{0%{opacity: 0; height:0} 50%{opacity: 1; height:3vh} 90%{opacity:1} 100%{opacity: 0; height: 0}}
+  
 
 @-ms-keyframes fadeIn{0%{opacity: 0;} 100%{opacity: 1;}}
 @-moz-keyframes fadeIn{0%{opacity: 0;} 100%{opacity: 1;}}

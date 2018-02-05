@@ -27,9 +27,9 @@
       <div id="sbDrag" class="sidebarWrap">
     
         <div class='heading'>
-            <h6 (click)="openSesame()" id="expandCollapse"></h6>
+            <h6 (click)="openSesame()" (mouseenter)="openSesameHover()" (mouseleave)="openSesameHover()" id="expandCollapse">{{ buttonMessage }} <img [ngClass]="{'rotator': isOpen}" src="assets/moreIcon.svg" alt="Meal Map Menu Icon" /></h6>
         </div>
-        <div id='listings' class='listings'>
+        <div id='listings' class='listings {{ openClass }} {{ bumpClass }}' >
           <!--LISTINGS HERE-->
         </div>
       <div id='map' class='map pad2'></div>
