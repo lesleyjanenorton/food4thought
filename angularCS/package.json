@@ -40,9 +40,11 @@
     "datatables.net-dt": "^1.10.16",
     "gl": "^4.0.4",
     "jquery": "^3.3.1",
+    "js": "^0.1.0",
     "mapbox": "^1.0.0-beta9",
     "mapbox-gl": "^0.43.0",
     "mapbox-gl-geocoder": "^2.0.1",
+    "popper": "^1.0.1",
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.14"
   },
