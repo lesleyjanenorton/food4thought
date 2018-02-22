@@ -5,7 +5,7 @@ import * as mapboxgl from 'mapbox-gl';
 import * as MapboxGeocoder from 'mapbox-gl-geocoder';
 import * as MapboxDraw from '@mapbox/mapbox-gl-draw';
 // import { SITES } from '../assets/temp_sites'
-import { UserLocation } from "./../userLocation";
+// import { UserLocation } from "./../userLocation";
 import * as turf from "@turf/turf";
 import { Units, Coord, Feature } from '@turf/turf';
 import { GeoJSONSource, GeoJSONGeometry } from 'mapbox-gl/dist/mapbox-gl';
@@ -19,7 +19,7 @@ import { FeatureCollection } from 'geojson';
 })
 export class MainComponent implements OnInit {
     isOpen : Boolean;
-    userLoc : UserLocation = new UserLocation();
+    // userLoc : UserLocation = new UserLocation();
     mapToken : String;
     mealSites: any;
     map:mapboxgl.Map;
